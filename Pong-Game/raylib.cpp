@@ -12,6 +12,18 @@ struct Ball
 	}
 };
 
+struct Paddle
+{
+	float x, y;
+	float speed;
+	float width, height;
+
+	void Draw()
+	{
+		DrawRectangle(x, y, width, height, YELLOW);
+	}
+};
+
 int main()
 {
 	InitWindow(800, 600, "Pong");
@@ -25,6 +37,24 @@ int main()
 	ball.radius = 5;
 	ball.SpeedX = 100;
 	ball.SpeedY = 300;
+
+
+
+	Paddle leftpaddle;
+
+	leftpaddle.x = 50;
+	leftpaddle.y = GetScreenHeight() / 2 - 50;
+	leftpaddle.width = 10;
+	leftpaddle.height = 100;
+
+
+	Paddle rightpaddle;
+
+	rightpaddle.x = GetScreenWidth() - 50 - 10;
+	rightpaddle.y = GetScreenHeight() / 2 - 50;
+	rightpaddle.width = 10;
+	rightpaddle.height = 100;
+
 
 	while (!WindowShouldClose())
 	{
@@ -50,8 +80,8 @@ int main()
 		ClearBackground(BLACK);
 
 		ball.Draw();
-		DrawRectangle(50, GetScreenHeight() / 2 - 50, 10, 100, YELLOW);
-		DrawRectangle(GetScreenWidth() - 50 - 10, GetScreenHeight() / 2 - 50, 10, 100, YELLOW);
+		leftpaddle.Draw();
+		rightpaddle.Draw();
 		DrawFPS(10, 10);
 		EndDrawing();
 	}
